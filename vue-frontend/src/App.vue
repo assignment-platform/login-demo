@@ -34,6 +34,7 @@
 </style>
 
 <script>
+import Axios from 'axios';
 
 export default {
   data() {
@@ -43,6 +44,13 @@ export default {
         password: ""
       }
     };
-  }
+  },
+  methods: {
+    onSubmit() {
+      Axios.post('http://localhost/user/login', this.form).then(
+        response => console.log(`登录成功，返回数据为${response.data}`)
+      ).catch(console.log)
+    }
+  },
 };
 </script>
