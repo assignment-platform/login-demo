@@ -34,7 +34,7 @@
 </style>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 
 export default {
   data() {
@@ -46,11 +46,12 @@ export default {
     };
   },
   methods: {
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS?redirectlocale=en-US&redirectslug=HTTP_access_control#Requests_with_credentials
     onSubmit() {
-      Axios.post('http://localhost/user/login', this.form).then(
-        response => console.log(`登录成功，返回数据为${response.data}`)
-      ).catch(console.log)
+      Axios.post("http://localhost/user/login", this.form, { withCredentials: true })
+        .then(this.$router.push('/about'))
+        .catch(console.log);
     }
-  },
+  }
 };
 </script>

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")
+// See https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS?redirectlocale=en-US&redirectslug=HTTP_access_control#Requests_with_credentials
 public class UserController {
     private List<User> users;
 
@@ -22,7 +23,7 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
         if (users.contains(user)) {
             session.setAttribute("user", user);
-            return ResponseEntity.ok().body("登录成功");
+            return ResponseEntity.ok("登录成功！");
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("用户名或密码错误");
