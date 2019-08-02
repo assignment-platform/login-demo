@@ -49,7 +49,10 @@ export default {
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS?redirectlocale=en-US&redirectslug=HTTP_access_control#Requests_with_credentials
     onSubmit() {
       Axios.post("http://localhost/user/login", this.form, { withCredentials: true })
-        .then(this.$router.push('/about'))
+        .then(response => {
+          console.log(response.data);
+          this.$router.push("/about");
+        })
         .catch(console.log);
     }
   }

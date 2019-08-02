@@ -2,6 +2,7 @@
   <div>
     <h1>Congratulations!</h1>
     <h2>From Server: {{aboutme}}</h2>
+    <router-link to="/logout">Logout</router-link>
   </div>
 </template>
 
@@ -18,7 +19,10 @@ export default {
   created() {
     Axios.get("http://localhost/user/about", { withCredentials: true })
       .then(response => (this.aboutme = response.data))
-      .catch(console.log); // TODO: redirect to login page
+      .catch(error => {
+        console.log(error);
+        this.$router.push('/login')
+      });
   }
 };
 </script>
