@@ -10,7 +10,6 @@
 * 登录接口对应的HTTP请求API为`http://localhost/user/login`
 * 后端没有使用数据库，所有的数据放在`UserController`的`users`数组中
 * 运行：
-
   * 前端：`yarn serve` 或 `npm run serve`，后端：在IDEA中运行`Application.java`
   * 打开浏览器的Console窗口
   * 在表单中输入'001'和'000'，点登录Console会显示登录成功
