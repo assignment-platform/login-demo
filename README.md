@@ -36,3 +36,7 @@
   * 在`UserController.java`中，`@CrossOrigin`注解携带了更为详细的参数，这些参数与前端的`{ withCredentials: true }`参数相响应，具体参数为`@CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")`
   * 原理：默认情况下，当存在跨域的异步请求（如`Login.vue`中的`Axios.post`）时，默认情况下不会发送和接收`Cookie`信息。要想改变这一默认行为，必须按上述两点进行修复。具体文档请[点击这里](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS?redirectlocale=en-US&redirectslug=HTTP_access_control#Requests_with_credentials)
 * 运行效果：当用户登录系统后，如果登录成功，将自动跳转到`/about`页面，并显示用户信息。这在`why-session-failed`版本中是做不到的
+
+## 版本：add-logout
+* 在`/about`页面中添加了`logout`链接
+* 修改了后端日志的显示级别
