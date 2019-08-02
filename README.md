@@ -1,7 +1,7 @@
-### 项目说明
+## 项目说明
 * 使用vue + spring boot 开发的简单的登录应用
 
-### 版本：basic-login
+## 版本：basic-login
 * 最简单的登录
 * 前端使用最基本的表单
 * 前端使用Axios库对后端进行访问
@@ -16,7 +16,7 @@
   * 在表单中输入'001'和'000'，点登录Console会显示登录成功
   * 输入别的信息，点登录会返回401错误信息
 
-### 版本：why-session-failed
+## 版本：why-session-failed
 * 问题：当用户登录后，用户无须再次登录就可执行相关的操作，如通过`/about`页面查看自己的信息。为此：
   * 当用户登录成功后，后端应该把用户登录成功的信息保存在`session`中，并把`session`的`id`返回给前端。`session`的中文名叫**会话**
   * 登录后的用户在后面的请求中，可以将这个`session`的`id`同时发送给后端，后端由此可知该用户是否已经登录。
@@ -30,7 +30,7 @@
    * 当输入默认地址时，会跳转到 `/login` 地址
    * 为配合`/about`页面，后端添加`/about`接口。该接口通过session获取用户是否已经登录，如果没有，返回403，如果已经登录，返回用户信息
 
-# 版本：use-cookie-to-maintain-session
+## 版本：use-cookie-to-maintain-session
 * 在版本`why-session-failed`中，当用户登录成功后，后续的请求因为无法发送`Cookie`信息，所以服务器无法接收`Cookie`所传递的`session id`，从而无法找到当前会话的对象，最后服务器会认为会话不存在，返回403错误
 * 这个版本恢复了浏览器-服务器之间的cookie通讯。实现的关键有两处：
   * 在`Login.vue`和`About.vue`中，在`Axios.post`和`Axios.get`中，加入了参数`{ withCredentials: true }`，使浏览器恢复发送`cookie`的能力
