@@ -29,3 +29,10 @@
    * `Loging.vue` 组件对应的地址为 `/login`
    * 当输入默认地址时，会跳转到 `/login` 地址
    * 为配合`/about`页面，后端添加`/about`接口。该接口通过session获取用户是否已经登录，如果没有，返回403，如果已经登录，返回用户信息
+
+# 版本：use-cookie-to-maintain-session
+* 在版本`why-session-failed`中，当用户登录成功后，后续的请求因为无法发送`Cookie`信息，所以服务器无法接收`Cookie`所传递的`session id`，从而无法找到当前会话的对象，最后服务器会认为会话不存在，返回403错误
+* 这个版本恢复了浏览器-服务器之间的cookie通讯。实现的关键有两处：
+  * 在`Login.vue`和`About.vue`中，在`Axios.post`和`Axios.get`中，加入了参数`{ withCredentials: true }`，使浏览器恢复发送`cookie`的能力
+  * 在`UserController.java`中，`@CrossOrigin`注解携带了更为详细的参数，这些参数与前端的`{ withCredentials: true }`参数相响应，具体参数为`@CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")`
+  * 原理：默认情况下，当存在跨域的异步请求（如`Login.vue`中的`Axios.post`）时，默认情况下不会发送和接收`Cookie`信息。要想改变这一默认行为，必须按上述两点进行修复。具体文档请[点击这里](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS?redirectlocale=en-US&redirectslug=HTTP_access_control#Requests_with_credentials)
